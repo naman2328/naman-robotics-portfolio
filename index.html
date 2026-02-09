@@ -1,62 +1,264 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Naman Sharma | Robotics Engineer</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Naman Sharma | Robotics Engineer</title>
+
+<style>
+:root {
+  --bg:#0f1115;
+  --card:#171a21;
+  --text:#eaeaf0;
+  --muted:#9aa0aa;
+  --accent:#4da3ff;
+  --ok:#35c97b;
+  --radius:14px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+  padding:60px 20px 80px;
+}
+
+a{color:inherit;text-decoration:none}
+
+/* ================= HERO ================= */
+
+.hero{
+  text-align:center;
+  margin-bottom:70px;
+}
+
+.hero h1{
+  font-size:44px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:18px;
+}
+
+/* ================= SKILLS ================= */
+
+.skills{
+  text-align:center;
+  margin-bottom:60px;
+}
+
+.tag{
+  display:inline-block;
+  padding:8px 14px;
+  margin:6px;
+  background:var(--card);
+  border-radius:20px;
+  font-size:13px;
+}
+
+/* ================= PROJECT GRID ================= */
+
+.projects{
+  display:grid;
+  gap:40px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:28px;
+  border:1px solid #222;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:32px;
+  align-items:center;
+}
+
+.card img{
+  width:100%;
+  border-radius:12px;
+  max-height:260px;
+  object-fit:cover;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
+  display:inline-block;
+  margin-top:12px;
+  margin-right:10px;
+  padding:8px 14px;
+  background:var(--accent);
+  color:#000;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:600;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+  margin-top:80px;
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <h1>Naman Sharma</h1>
-    <p>Robotics Engineer | ROS2 | Computer Vision | Edge AI</p>
-</header>
+<div class="container">
 
-<section class="skills">
-    <h2>Skills</h2>
-    <div class="tags">
-        <span>ROS2</span>
-        <span>Python</span>
-        <span>C++</span>
-        <span>OpenCV</span>
-        <span>Jetson</span>
-        <span>Gazebo</span>
-        <span>Isaac Sim</span>
-        <span>Motion Planning</span>
-    </div>
-</section>
+<!-- ================= HERO ================= -->
 
-<section class="projects">
-    <h2>Featured Projects</h2>
+<div class="hero">
+  <h1>Naman Sharma</h1>
+  <p>Robotics Engineer • ROS 2 • Computer Vision • Edge AI • Simulation</p>
+</div>
 
-    <a href="projects/ocr.html" class="card">
-        <h3>OCR Vision Inspection</h3>
-        <p>Offline industrial OCR system on Jetson Orin Nano</p>
-    </a>
+<!-- ================= SKILLS ================= -->
 
-    <a href="projects/pickplace.html" class="card">
-        <h3>Vision Guided Pick & Place</h3>
-        <p>ROS 2 camera-to-robot manipulation</p>
-    </a>
+<div class="skills">
+  <span class="tag">ROS 2</span>
+  <span class="tag">Python</span>
+  <span class="tag">C++</span>
+  <span class="tag">OpenCV</span>
+  <span class="tag">Jetson Orin</span>
+  <span class="tag">Gazebo</span>
+  <span class="tag">Isaac Sim</span>
+  <span class="tag">Motion Planning</span>
+</div>
 
-    <a href="projects/arm.html" class="card">
-        <h3>3D Printed Robotic Arm</h3>
-        <p>Custom servo based manipulator</p>
-    </a>
 
-    <a href="projects/mecanum.html" class="card">
-        <h3>Mecanum Mobile Robot</h3>
-        <p>Holonomic motion robot platform</p>
-    </a>
+<!-- ================= PROJECTS ================= -->
 
-</section>
+<div class="projects">
 
-<section class="contact">
-    <h2>Contact</h2>
-    <a href="resume.pdf">Download Resume</a>
-    <a href="https://github.com/naman2328">GitHub</a>
-    <a href="mailto:yourmail@gmail.com">Email</a>
-</section>
+
+<!-- PROJECT 1 -->
+<div class="card grid">
+  <div>
+    <h2>OCR Vision Inspection (Jetson Orin Nano)</h2>
+
+    <p>
+      Industrial OCR pipeline running fully offline with ROI locking,
+      preprocessing and deterministic OK/NG validation logic.
+    </p>
+
+    <p>
+      <b>Results:</b> Real-time inference, reduced false positives,
+      stable performance on embedded hardware.
+    </p>
+
+    <a class="btn" href="#">Demo</a>
+    <a class="btn" href="#">GitHub</a>
+  </div>
+
+  <img src="Assets/ocr.jpeg">
+</div>
+
+
+
+<!-- PROJECT 2 -->
+<div class="card grid">
+  <div>
+    <h2>Vision-Guided Pick & Place (ROS 2)</h2>
+
+    <p>
+      Camera detection → coordinate transform → robotic manipulation
+      using modular ROS 2 nodes on real hardware.
+    </p>
+
+    <p>
+      <b>Results:</b> Reliable autonomous pick-and-place with clean
+      vision/control separation.
+    </p>
+
+    <a class="btn" href="Assets/dobot.mp4">Demo</a>
+    <a class="btn" href="#">GitHub</a>
+  </div>
+
+  <img src="Assets/dobot.png">
+</div>
+
+
+
+<!-- PROJECT 3 -->
+<div class="card grid">
+  <div>
+    <h2>Custom 3D-Printed Robotic Arm</h2>
+
+    <p>
+      Designed mechanical structure and implemented servo-based control
+      for low-cost manipulation experiments.
+    </p>
+
+    <p>
+      <b>Results:</b> Learned calibration, backlash reduction and
+      real-world hardware debugging.
+    </p>
+
+    <a class="btn" href="#">Demo</a>
+  </div>
+
+  <img src="Assets/arm.png">
+</div>
+
+
+
+<!-- PROJECT 4 -->
+<div class="card grid">
+  <div>
+    <h2>Mecanum Mobile Robot</h2>
+
+    <p>
+      Holonomic drive robot with forward & inverse kinematics
+      for omnidirectional movement.
+    </p>
+
+    <p>
+      <b>Results:</b> Accurate sideways, diagonal and rotational control.
+    </p>
+
+    <a class="btn" href="Assets/omni_demo.mp4">Demo</a>
+  </div>
+
+  <img src="Assets/omni.png">
+</div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<div class="footer">
+  <p>
+    <a href="resume.pdf">Resume</a> •
+    <a href="https://github.com/naman2328">GitHub</a> •
+    <a href="mailto:yourmail@gmail.com">Contact</a>
+  </p>
+</div>
+
+</div>
 
 </body>
-</html>
+</html0
