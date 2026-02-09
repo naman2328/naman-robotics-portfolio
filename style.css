@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #0f1115;
+    color: white;
+    margin: 0;
+}
+
+header {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.tags {
+    text-align: center;
+}
+
+.tags span {
+    background: #1f2430;
+    padding: 8px 14px;
+    margin: 6px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+.card {
+    background: #1a1d25;
+    padding: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+
+.card:hover {
+    background: #2a2f3a;
+}
+
+.contact {
+    text-align: center;
+    padding: 60px;
+}
+
+a {
+    color: #4da6ff;
+}
