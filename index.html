@@ -5,19 +5,18 @@
 <title>Naman Sharma | Robotics Engineer</title>
 
 <style>
-:root {
+:root{
   --bg:#0f1115;
-  --card:#171a21;
+  --card:rgba(23,26,33,0.7);
   --text:#eaeaf0;
   --muted:#9aa0aa;
   --accent:#4da3ff;
-  --ok:#35c97b;
-  --purple:#9b7cff;
-  --radius:16px;
+  --radius:18px;
 }
 
-html{ scroll-behavior:smooth; }
+/* ================= GLOBAL ================= */
 
+html{scroll-behavior:smooth}
 *{box-sizing:border-box}
 
 body{
@@ -28,118 +27,138 @@ body{
   line-height:1.7;
 }
 
+/* subtle background glow */
+body::before{
+  content:"";
+  position:fixed;
+  width:800px;
+  height:800px;
+  background:radial-gradient(circle,var(--accent) 0%,transparent 70%);
+  opacity:.08;
+  top:-200px;
+  right:-200px;
+  z-index:-1;
+}
+
+/* ================= NAVBAR ================= */
+
+.nav{
+  position:sticky;
+  top:0;
+  backdrop-filter:blur(10px);
+  background:rgba(15,17,21,.75);
+  padding:14px 40px;
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid #1d2129;
+  z-index:999;
+}
+
+.nav a{
+  margin-left:18px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.nav a:hover{
+  color:var(--accent);
+}
+
 /* ================= CONTAINER ================= */
 
 .container{
   max-width:1200px;
   margin:auto;
-  padding:70px 28px 120px;
+  padding:60px 25px 120px;
 }
 
 /* ================= HERO ================= */
 
 .hero{
-  margin-bottom:80px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  align-items:center;
+  gap:60px;
+  margin-top:80px;
 }
 
-.badge{
-  display:inline-block;
-  background:rgba(77,163,255,0.12);
-  color:var(--accent);
-  padding:6px 14px;
-  border-radius:999px;
-  font-size:12px;
-  margin-bottom:16px;
+.hero h1{
+  font-size:52px;
+  margin:0 0 18px;
 }
 
-h1{
-  font-size:46px;
-  margin-bottom:10px;
-}
-
-p{
+.hero p{
   color:var(--muted);
+  font-size:18px;
 }
 
-/* ================= CARDS ================= */
+.hero-card{
+  background:var(--card);
+  backdrop-filter:blur(12px);
+  border-radius:var(--radius);
+  padding:40px;
+  border:1px solid #222;
+}
+
+/* ================= SECTION ================= */
+
+.section{
+  margin-top:110px;
+}
+
+h2{
+  font-size:32px;
+  margin-bottom:24px;
+}
+
+/* ================= PROJECT CARDS ================= */
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:26px;
+}
 
 .card{
   background:var(--card);
+  backdrop-filter:blur(10px);
   border-radius:var(--radius);
-  padding:30px;
+  overflow:hidden;
   border:1px solid #222;
-  transition:.25s ease;
+  transition:.3s;
+  cursor:pointer;
 }
 
 .card:hover{
-  transform:translateY(-4px);
-  border-color:#2b313c;
+  transform:translateY(-8px);
+  border-color:var(--accent);
+  box-shadow:0 10px 40px rgba(0,0,0,.5);
 }
 
-.section{
-  margin-top:90px;
-}
-
-/* ================= GRID ================= */
-
-.grid{
-  display:grid;
-  grid-template-columns:1.2fr 0.8fr;
-  gap:40px;
-  align-items:center;
-}
-
-/* ================= MINI PROJECT CARDS ================= */
-
-.projects-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
-  margin-top:24px;
-}
-
-.mini-card{
-  background:#1c2029;
-  padding:20px;
-  border-radius:12px;
-  transition:.25s;
-}
-
-.mini-card:hover{
-  transform:translateY(-4px);
-  border:1px solid var(--accent);
-}
-
-/* ================= BUTTON ================= */
-
-.button{
-  display:inline-block;
-  margin-top:14px;
-  margin-right:10px;
-  padding:9px 16px;
-  background:var(--accent);
-  color:#000;
-  border-radius:8px;
-  font-size:13px;
-  font-weight:600;
-}
-
-/* ================= IMAGES ================= */
-
-.img-card img{
+.card img{
   width:100%;
-  border-radius:14px;
-  max-height:300px;
+  height:200px;
   object-fit:cover;
-  cursor:zoom-in;
+}
+
+.card-content{
+  padding:22px;
+}
+
+.card p{
+  color:var(--muted);
+  font-size:14px;
 }
 
 /* ================= TIMELINE ================= */
 
-.timeline-item{
+.timeline{
   border-left:2px solid var(--accent);
-  padding-left:18px;
-  margin-bottom:24px;
+  padding-left:20px;
+}
+
+.timeline-item{
+  margin-bottom:26px;
 }
 
 .timeline-item span{
@@ -147,219 +166,154 @@ p{
   color:var(--accent);
 }
 
-/* ================= LIGHTBOX ================= */
+/* ================= GITHUB ================= */
 
-.lightbox{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.9);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:1000;
+.center{text-align:center}
+
+/* ================= ANIMATION ================= */
+
+.fade{
+  opacity:0;
+  transform:translateY(25px);
+  transition:.6s ease;
 }
 
-.lightbox img{
-  max-width:90%;
-  max-height:90%;
-  border-radius:14px;
-}
-
-.lightbox.active{
-  display:flex;
+.fade.show{
+  opacity:1;
+  transform:none;
 }
 
 /* ================= MOBILE ================= */
 
 @media(max-width:900px){
-  .grid{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
+<div class="nav">
+  <b>Naman Sharma</b>
+  <div>
+    <a href="#projects">Projects</a>
+    <a href="#timeline">Experience</a>
+    <a href="#github">GitHub</a>
+  </div>
+</div>
+
 <div class="container">
 
-<!-- ================= HERO ================= -->
-
-<div class="hero">
-  <span class="badge">ROBOTICS & INDUSTRIAL VISION</span>
-  <h1>Naman Sharma</h1>
-  <p>
-    Robotics Engineer focused on ROS 2, Computer Vision, Edge AI and
-    real-world industrial automation systems.
-  </p>
-</div>
-
-
-<!-- ================= QUICK PROJECT NAV ================= -->
-
-<div class="section">
-<h2>Featured Projects</h2>
-
-<div class="projects-grid">
-  <a href="#ocr" class="mini-card">OCR Inspection</a>
-  <a href="#pickplace" class="mini-card">Pick & Place</a>
-  <a href="#arm" class="mini-card">Robotic Arm</a>
-  <a href="#mecanum" class="mini-card">Mecanum Robot</a>
-</div>
-</div>
-
-
-
-<!-- ================= PROJECT 1 ================= -->
-
-<div id="ocr" class="section card grid">
+<!-- HERO -->
+<div class="hero fade">
   <div>
-    <h2>OCR Vision Inspection (Jetson Orin Nano)</h2>
+    <h1>Robotics Engineer<br>Building Real Systems</h1>
     <p>
-      Offline industrial OCR pipeline with ROI locking, preprocessing and
-      deterministic OK/NG validation for factory environments.
+      ROS 2 • Computer Vision • Jetson Edge AI • Simulation • Automation  
+      I design and deploy practical robotic systems for real environments.
     </p>
-    <p><b>Results:</b> Real-time inference, reduced false positives, edge deployment.</p>
-    <a class="button" href="#">Demo</a>
-    <a class="button" href="#">GitHub</a>
   </div>
 
-  <div class="img-card">
-    <img src="Assets/ocr.jpeg" onclick="openLightbox(this)">
-  </div>
-</div>
-
-
-
-<!-- ================= PROJECT 2 ================= -->
-
-<div id="pickplace" class="section card grid">
-  <div>
-    <h2>Vision Guided Pick & Place (ROS 2)</h2>
+  <div class="hero-card">
+    <b>Focus Areas</b>
     <p>
-      Camera detection → coordinate transform → robot control using modular ROS 2 nodes.
+      Vision Inspection Systems<br>
+      Robotic Manipulation<br>
+      Edge AI Deployment<br>
+      Industrial Automation
     </p>
-    <p><b>Results:</b> Reliable autonomous pick-and-place on real hardware.</p>
-    <a class="button" href="Assets/dobot.mp4">Demo</a>
-  </div>
-
-  <div class="img-card">
-    <img src="Assets/dobot.png" onclick="openLightbox(this)">
   </div>
 </div>
 
 
 
-<!-- ================= PROJECT 3 ================= -->
+<!-- PROJECTS -->
+<div id="projects" class="section">
+<h2>Projects</h2>
 
-<div id="arm" class="section card grid">
-  <div>
-    <h2>Custom 3D Printed Robotic Arm</h2>
-    <p>
-      Designed mechanical structure and implemented servo control for low-cost manipulation.
-    </p>
-    <p><b>Results:</b> Calibration, backlash reduction and hardware debugging.</p>
-  </div>
+<div class="projects">
 
-  <div class="img-card">
-    <img src="Assets/arm.png" onclick="openLightbox(this)">
+<div class="card fade">
+  <img src="Assets/ocr.jpeg">
+  <div class="card-content">
+    <h3>OCR Inspection (Jetson)</h3>
+    <p>Offline industrial OCR with ROI locking & OK/NG logic.</p>
   </div>
 </div>
 
-
-
-<!-- ================= PROJECT 4 ================= -->
-
-<div id="mecanum" class="section card grid">
-  <div>
-    <h2>Mecanum Mobile Robot</h2>
-    <p>
-      Holonomic drive system with forward/inverse kinematics.
-    </p>
-    <p><b>Results:</b> Smooth sideways, diagonal and rotational motion.</p>
-    <a class="button" href="Assets/omni_demo.mp4">Demo</a>
-  </div>
-
-  <div class="img-card">
-    <img src="Assets/omni.png" onclick="openLightbox(this)">
+<div class="card fade">
+  <img src="Assets/dobot.png">
+  <div class="card-content">
+    <h3>Vision Pick & Place</h3>
+    <p>ROS 2 based camera-to-robot manipulation.</p>
   </div>
 </div>
 
-
-
-<!-- ================= TIMELINE ================= -->
-
-<div class="section card">
-<h2>Experience Timeline</h2>
-
-<div class="timeline-item">
-  <span>2025 – Present</span>
-  <p><b>Autoliv India – Maintenance Intern</b><br>Vision inspection & automation debugging</p>
+<div class="card fade">
+  <img src="Assets/arm.png">
+  <div class="card-content">
+    <h3>3D Printed Robotic Arm</h3>
+    <p>Servo controlled custom manipulator design.</p>
+  </div>
 </div>
 
-<div class="timeline-item">
-  <span>Robotics Projects</span>
-  <p>ROS 2 manipulation, SLAM, Jetson deployment, computer vision systems</p>
+<div class="card fade">
+  <img src="Assets/omni.png">
+  <div class="card-content">
+    <h3>Mecanum Robot</h3>
+    <p>Holonomic drive with kinematic control.</p>
+  </div>
 </div>
 
-<div class="timeline-item">
-  <span>Chitkara University</span>
-  <p>B.E. Mechatronics Engineering</p>
 </div>
 </div>
 
 
 
-<!-- ================= GITHUB STATS ================= -->
+<!-- TIMELINE -->
+<div id="timeline" class="section">
+<h2>Experience</h2>
 
-<div class="section" style="text-align:center">
+<div class="timeline fade">
+  <div class="timeline-item">
+    <span>2025 – Present</span>
+    Autoliv India – Vision inspection & automation
+  </div>
+  <div class="timeline-item">
+    <span>Robotics Projects</span>
+    ROS 2, Jetson deployment, SLAM & manipulation
+  </div>
+  <div class="timeline-item">
+    <span>B.E. Mechatronics</span>
+    Chitkara University
+  </div>
+</div>
+</div>
+
+
+
+<!-- GITHUB -->
+<div id="github" class="section center fade">
 <h2>GitHub Activity</h2>
 
-<img src="https://github-readme-stats.vercel.app/api?username=naman2328&show_icons=true&theme=dark" height="160">
+<img src="https://github-readme-stats.vercel.app/api?username=naman2328&show_icons=true&theme=dark">
 <br><br>
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=naman2328&theme=dark" height="160">
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=naman2328&theme=dark">
+</div>
+
 </div>
 
 
-
-</div>
-
-
-
-<!-- ================= LIGHTBOX ================= -->
-
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img">
-</div>
-
-
-
-<!-- ================= SCRIPTS ================= -->
 
 <script>
-function openLightbox(img){
-  document.getElementById("lightbox-img").src = img.src;
-  document.getElementById("lightbox").classList.add("active");
-}
-function closeLightbox(){
-  document.getElementById("lightbox").classList.remove("active");
-}
-
-/* scroll animations */
-const cards=document.querySelectorAll('.card');
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.style.opacity=1;
-      entry.target.style.transform="translateY(0)";
-    }
-  });
-},{threshold:0.15});
-
-cards.forEach(c=>{
-  c.style.opacity=0;
-  c.style.transform="translateY(25px)";
-  c.style.transition="all 0.6s ease";
-  observer.observe(c);
+const faders=document.querySelectorAll('.fade');
+const obs=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{
+   if(e.isIntersecting) e.target.classList.add('show');
+ });
 });
+faders.forEach(el=>obs.observe(el));
 </script>
 
 </body>
