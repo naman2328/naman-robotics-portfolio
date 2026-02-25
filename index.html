@@ -3,1130 +3,231 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Naman Sharma — Robotics Engineer</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --bg: #080c10;
-    --surface: #0d1318;
-    --surface2: #111820;
-    --border: rgba(255,255,255,0.07);
-    --accent: #00e5ff;
-    --accent2: #ff6b35;
-    --accent3: #7cfc00;
-    --text: #e8edf2;
-    --muted: #6b7a8a;
-    --card: #0f1720;
-  }
+:root {
+  --bg:#080c10;
+  --surface:#0d1318;
+  --surface2:#111820;
+  --border:rgba(255,255,255,0.07);
+  --accent:#00e5ff;
+  --accent2:#ff6b35;
+  --accent3:#7cfc00;
+  --text:#e8edf2;
+  --muted:#6b7a8a;
+  --card:#0f1720;
+}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
 
-  html { scroll-behavior: smooth; }
+.name-accent{color:var(--accent);text-shadow:0 0 20px rgba(0,229,255,0.35)}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-    cursor: none;
-  }
+.hero-video{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0.07;
+pointer-events:none;
+z-index:0
+}
 
-  /* Custom cursor */
-  .cursor {
-    width: 10px; height: 10px;
-    background: var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.15s ease, background 0.2s;
-    transform: translate(-50%, -50%);
-  }
-  .cursor-ring {
-    width: 36px; height: 36px;
-    border: 1px solid rgba(0,229,255,0.4);
-    border-radius: 50%;
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9998;
-    transition: all 0.25s ease;
-    transform: translate(-50%, -50%);
-  }
+.project-img video{width:100%;height:100%;object-fit:cover}
 
-  /* Grid noise overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,229,255,0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.015) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 4rem;background:rgba(8,12,16,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.4rem 4rem;
-    background: rgba(8,12,16,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.1rem;
-    letter-spacing: 0.05em;
-    color: var(--text);
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--accent); }
-  .nav-links {
-    display: flex; gap: 2.5rem; list-style: none;
-  }
-  .nav-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--accent); }
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--text);text-decoration:none}
+.nav-logo span{color:var(--accent)}
 
-  /* SECTIONS */
-  section { position: relative; z-index: 1; }
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:'DM Mono';font-size:.78rem;color:var(--muted);text-decoration:none}
+.nav-links a:hover{color:var(--accent)}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 8rem 4rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 4rem;position:relative}
 
-  .hero-bg-circle {
-    position: absolute;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
-    top: -100px; right: -100px;
-    pointer-events: none;
-  }
-  .hero-bg-circle2 {
-    position: absolute;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(255,107,53,0.05) 0%, transparent 70%);
-    bottom: 100px; left: -100px;
-    pointer-events: none;
-  }
+.hero-content{max-width:780px;position:relative;z-index:1}
 
-  .hero-content { max-width: 780px; }
+.hero-tag{font-family:'DM Mono';font-size:.7rem;color:var(--accent);margin-bottom:1rem}
 
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid rgba(0,229,255,0.25);
-    padding: 0.35rem 0.9rem;
-    border-radius: 2px;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
-  .hero-tag::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
+.hero h1{font-family:'Syne';font-size:clamp(3.5rem,8vw,6rem);font-weight:800}
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(1.4); }
-  }
+.hero-title-line{color:var(--muted);margin-bottom:1.5rem;font-weight:600}
 
-  .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    color: var(--text);
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
-    margin-bottom: 0.15em;
-  }
-  .hero h1 .name-accent { color: var(--accent); }
+.hero-tagline{line-height:1.7;color:rgba(232,237,242,.7);max-width:560px;margin-bottom:.8rem}
 
-  .hero-title-line {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-    font-weight: 600;
-    color: var(--muted);
-    letter-spacing: 0.02em;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.55s forwards;
-    margin-bottom: 1.8rem;
-  }
+.hero-stack{font-family:'DM Mono';color:var(--accent);margin-bottom:2rem}
 
-  .hero-tagline {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: rgba(232,237,242,0.7);
-    max-width: 560px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.7s forwards;
-    margin-bottom: 0.8rem;
-  }
+.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
 
-  .hero-stack {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.85s forwards;
-    margin-bottom: 2.8rem;
-  }
-  .hero-stack span { color: var(--muted); margin: 0 0.4em; }
+.btn-primary{background:var(--accent);color:#000;padding:.85rem 2rem;text-decoration:none;font-weight:700}
+.btn-secondary{border:1px solid var(--border);padding:.85rem 2rem;text-decoration:none;color:var(--text)}
 
-  .hero-buttons {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s 1s forwards;
-  }
+.hero-side{position:absolute;right:4rem;top:50%;transform:translateY(-50%)}
+.hero-stat{background:var(--surface);padding:1rem;margin-bottom:.5rem;border-left:2px solid var(--accent)}
+.hero-stat-num{font-family:'Syne';font-size:2rem;color:var(--accent)}
+.hero-stat-label{font-family:'DM Mono';font-size:.7rem;color:var(--muted)}
 
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: var(--accent);
-    color: #080c10;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    padding: 0.85rem 2rem;
-    border-radius: 2px;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-primary:hover {
-    background: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0,229,255,0.2);
-  }
+.section-wrap{padding:7rem 4rem;max-width:1200px;margin:auto}
+.section-title{font-family:'Syne';font-size:2.5rem;margin-bottom:3rem}
 
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    padding: 0.85rem 2rem;
-    border-radius: 2px;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-secondary:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
-  }
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
 
-  .hero-side {
-    position: absolute;
-    right: 4rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    opacity: 0;
-    animation: fadeIn 1s 1.2s forwards;
-  }
-  .hero-stat {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 2px solid var(--accent);
-    padding: 1.2rem 1.6rem;
-    min-width: 170px;
-  }
-  .hero-stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .hero-stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-top: 0.3rem;
-  }
+.project-card{background:var(--card);border:1px solid var(--border);overflow:hidden}
+.project-img{height:180px;display:flex;align-items:center;justify-content:center}
+.project-body{padding:1.5rem}
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+.tech-tag{font-family:'DM Mono';font-size:.65rem;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:.2rem .6rem;margin-right:.4rem}
 
-  /* SCROLL INDICATOR */
-  .scroll-indicator {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    opacity: 0;
-    animation: fadeIn 1s 1.5s forwards;
-  }
-  .scroll-indicator span {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .scroll-line {
-    width: 1px; height: 48px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-    animation: scrollAnim 2s ease-in-out infinite;
-  }
-  @keyframes scrollAnim {
-    0% { transform: scaleY(0); transform-origin: top; }
-    50% { transform: scaleY(1); transform-origin: top; }
-    51% { transform: scaleY(1); transform-origin: bottom; }
-    100% { transform: scaleY(0); transform-origin: bottom; }
-  }
+footer{background:var(--surface);padding:2rem;text-align:center}
 
-  /* SECTION WRAPPER */
-  .section-wrap {
-    padding: 6rem 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    max-width: 60px;
-    height: 1px;
-    background: var(--accent);
-    opacity: 0.4;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 3rem;
-  }
-
-  /* SPECIALIZATION */
-  .spec-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .spec-card {
-    background: var(--card);
-    padding: 2.5rem 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-  }
-  .spec-card:hover { background: var(--surface2); }
-  .spec-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .spec-card:hover::before { transform: scaleX(1); }
-
-  .spec-icon {
-    font-size: 2rem;
-    margin-bottom: 1.2rem;
-    display: block;
-  }
-  .spec-card h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 0.6rem;
-    color: var(--text);
-  }
-  .spec-card p {
-    font-size: 0.88rem;
-    line-height: 1.65;
-    color: var(--muted);
-  }
-  .spec-card-num {
-    position: absolute;
-    bottom: 1.5rem; right: 1.5rem;
-    font-family: 'Syne', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: rgba(255,255,255,0.03);
-    line-height: 1;
-  }
-
-  /* PROJECTS */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-  }
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-  }
-  .project-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(0,229,255,0.2);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(0,229,255,0.05);
-  }
-  .project-img {
-    height: 180px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-  }
-  .project-img-arm { background: linear-gradient(135deg, #0d2030 0%, #0a1a28 100%); }
-  .project-img-ocr { background: linear-gradient(135deg, #0d2818 0%, #0a1f12 100%); }
-  .project-img-mecanum { background: linear-gradient(135deg, #2a1a0d 0%, #1f1208 100%); }
-  .project-img-featured { background: linear-gradient(135deg, #1a0d2a 0%, #12081f 100%); }
-
-  .project-badge {
-    position: absolute;
-    top: 0.8rem; left: 0.8rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    background: rgba(0,229,255,0.12);
-    border: 1px solid rgba(0,229,255,0.3);
-    color: var(--accent);
-    padding: 0.25rem 0.6rem;
-    border-radius: 2px;
-  }
-
-  .project-body { padding: 1.5rem; }
-  .project-body h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: var(--text);
-  }
-  .project-body p {
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 1.2rem;
-  }
-  .tech-tags {
-    display: flex; flex-wrap: wrap; gap: 0.4rem;
-    margin-bottom: 1.4rem;
-  }
-  .tech-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.06em;
-    color: var(--muted);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    padding: 0.2rem 0.6rem;
-    border-radius: 2px;
-  }
-  .project-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    text-decoration: none;
-    transition: gap 0.2s;
-  }
-  .project-link:hover { gap: 0.7rem; }
-
-  /* SKILLS */
-  .skills-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2rem;
-  }
-  .skill-group {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    border-radius: 4px;
-    position: relative;
-  }
-  .skill-level {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .skill-level-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-  }
-  .advanced .skill-level-dot { background: var(--accent3); }
-  .intermediate .skill-level-dot { background: var(--accent); }
-  .familiar .skill-level-dot { background: var(--muted); }
-  .advanced .skill-level { color: var(--accent3); }
-  .intermediate .skill-level { color: var(--accent); }
-  .familiar .skill-level { color: var(--muted); }
-
-  .skill-items {
-    display: flex; flex-direction: column; gap: 0.8rem;
-  }
-  .skill-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-  .skill-item-name {
-    font-size: 0.88rem;
-    color: var(--text);
-    font-weight: 400;
-  }
-  .skill-bar {
-    height: 2px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 1px;
-    overflow: hidden;
-  }
-  .skill-fill {
-    height: 100%;
-    border-radius: 1px;
-    transition: width 1s ease;
-  }
-  .advanced .skill-fill { background: var(--accent3); }
-  .intermediate .skill-fill { background: var(--accent); }
-  .familiar .skill-fill { background: var(--muted); }
-
-  /* PHILOSOPHY */
-  .philosophy {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 6rem 4rem;
-    text-align: center;
-  }
-  .philosophy .section-label { justify-content: center; }
-  .philosophy .section-label::after { display: none; }
-  .philosophy-text {
-    max-width: 680px;
-    margin: 0 auto;
-    font-size: 1.25rem;
-    line-height: 1.75;
-    color: rgba(232,237,242,0.8);
-    font-style: italic;
-    font-weight: 300;
-  }
-  .philosophy-text strong {
-    color: var(--accent);
-    font-style: normal;
-    font-weight: 500;
-  }
-
-  /* EXPERIENCE */
-  .experience-block {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent2);
-    padding: 2.5rem;
-    border-radius: 2px;
-    display: flex;
-    gap: 3rem;
-    align-items: flex-start;
-  }
-  .exp-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent2);
-    letter-spacing: 0.1em;
-    white-space: nowrap;
-    margin-top: 0.2rem;
-    min-width: 130px;
-  }
-  .exp-content h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
-  }
-  .exp-content .exp-role {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.9rem;
-  }
-  .exp-content p {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: var(--muted);
-    max-width: 560px;
-  }
-  .exp-tags {
-    display: flex; flex-wrap: wrap; gap: 0.4rem;
-    margin-top: 1rem;
-  }
-  .exp-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.06em;
-    color: var(--accent2);
-    background: rgba(255,107,53,0.08);
-    border: 1px solid rgba(255,107,53,0.2);
-    padding: 0.2rem 0.6rem;
-    border-radius: 2px;
-  }
-
-  .edu-block {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--muted);
-    padding: 2.5rem;
-    border-radius: 2px;
-    display: flex;
-    gap: 3rem;
-    align-items: flex-start;
-    margin-top: 1.5rem;
-  }
-  .edu-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    white-space: nowrap;
-    margin-top: 0.2rem;
-    min-width: 130px;
-  }
-  .edu-content h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
-  }
-  .edu-content .edu-degree {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* CTA */
-  .cta {
-    text-align: center;
-    padding: 7rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .cta::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(0,229,255,0.05) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .cta-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-    margin-bottom: 1.5rem;
-  }
-  .cta-title .highlight { color: var(--accent); }
-  .cta p {
-    font-size: 1rem;
-    color: var(--muted);
-    margin-bottom: 2.5rem;
-  }
-  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-  /* FOOTER */
-  footer {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    padding: 2.5rem 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .footer-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1rem;
-    color: var(--text);
-  }
-  .footer-logo span { color: var(--accent); }
-  .footer-links {
-    display: flex; gap: 1.5rem;
-  }
-  .footer-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--accent); }
-  .footer-copy {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-  }
-
-  /* INTERSECTION OBSERVER ANIMATIONS */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @media (max-width: 900px) {
-    nav { padding: 1.2rem 2rem; }
-    .hero { padding: 7rem 2rem 4rem; }
-    .hero-side { display: none; }
-    .section-wrap { padding: 4rem 2rem; }
-    .skills-layout { grid-template-columns: 1fr; }
-    .experience-block, .edu-block { flex-direction: column; gap: 0.8rem; }
-    .philosophy { padding: 4rem 2rem; }
-    .cta { padding: 5rem 2rem; }
-    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem; }
-  }
 </style>
 </head>
+
 <body>
 
-<!-- Custom cursor -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">NS<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="https://github.com" target="_blank">GitHub ↗</a></li>
-  </ul>
+<a href="#" class="nav-logo">NS<span>.</span></a>
+<ul class="nav-links">
+<li><a href="#projects">Projects</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="https://github.com/naman2328" target="_blank">GitHub ↗</a></li>
+</ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg-circle"></div>
-  <div class="hero-bg-circle2"></div>
-  <div class="hero-content">
-    <div class="hero-tag">Available for opportunities</div>
-    <h1>Naman<br><span class="name-accent">Sharma</span></h1>
-    <p class="hero-title-line">Robotics & Computer Vision Engineer</p>
-    <p class="hero-tagline">Building intelligent robotic systems that combine perception, control, and automation to solve real-world engineering problems.</p>
-    <p class="hero-stack">ROS2 <span>•</span> OpenCV <span>•</span> Jetson Edge AI <span>•</span> Python <span>•</span> Embedded Systems</p>
-    <div class="hero-buttons">
-      <a href="#projects" class="btn-primary">View Projects →</a>
-      <a href="#" class="btn-secondary">Download Resume</a>
-      <a href="#contact" class="btn-secondary">Contact Me</a>
-    </div>
-  </div>
+<section class="hero">
 
-  <div class="hero-side">
-    <div class="hero-stat">
-      <div class="hero-stat-num">4+</div>
-      <div class="hero-stat-label">Robotic Systems Built</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">ROS2</div>
-      <div class="hero-stat-label">Primary Framework</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">Jetson</div>
-      <div class="hero-stat-label">Edge AI Platform</div>
-    </div>
-  </div>
+<video autoplay muted loop playsinline class="hero-video">
+<source src="videos/robot-loop.mp4" type="video/mp4">
+</video>
 
-  <div class="scroll-indicator">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
+<div class="hero-content">
+<div class="hero-tag">Available for opportunities</div>
+<h1>Naman<br><span class="name-accent">Sharma</span></h1>
+<p class="hero-title-line">Robotics & Computer Vision Engineer</p>
 
-<!-- SPECIALIZATION -->
-<section id="focus">
-  <div class="section-wrap">
-    <div class="section-label reveal">What I Work On</div>
-    <h2 class="section-title reveal">Engineering<br>Specializations</h2>
-    <div class="spec-grid">
-      <div class="spec-card reveal">
-        <span class="spec-icon">🤖</span>
-        <h3>Robotics Systems</h3>
-        <p>Designing autonomous and semi-autonomous robotic platforms — from manipulators to holonomic mobile robots — built to operate reliably in real environments.</p>
-        <div class="spec-card-num">01</div>
-      </div>
-      <div class="spec-card reveal">
-        <span class="spec-icon">👁</span>
-        <h3>Computer Vision</h3>
-        <p>Real-time detection, perception, and vision-guided control using OpenCV and deep learning. Specialized in industrial inspection and pick-and-place applications.</p>
-        <div class="spec-card-num">02</div>
-      </div>
-      <div class="spec-card reveal">
-        <span class="spec-icon">⚡</span>
-        <h3>Edge AI Deployment</h3>
-        <p>Deploying inference pipelines on Jetson hardware for offline, low-latency applications. Bridging the gap between AI research and industrial deployment.</p>
-        <div class="spec-card-num">03</div>
-      </div>
-      <div class="spec-card reveal">
-        <span class="spec-icon">⚙️</span>
-        <h3>Embedded Systems</h3>
-        <p>Low-level control using Raspberry Pi, Jetson Nano, and microcontrollers. Writing firmware and communication protocols for real-time robotic control.</p>
-        <div class="spec-card-num">04</div>
-      </div>
-    </div>
-  </div>
-</section>
+<p class="hero-tagline">
+I design and build intelligent robotic systems that integrate perception,
+control, and embedded computing — from vision-guided manipulators to
+autonomous mobile robots.
+</p>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-wrap">
-    <div class="section-label reveal">Featured Work</div>
-    <h2 class="section-title reveal">Selected Projects</h2>
-    <div class="projects-grid">
-      <div class="project-card reveal">
-        <div class="project-img project-img-ocr">
-          🔍
-          <div class="project-badge">Edge AI</div>
-        </div>
-        <div class="project-body">
-          <h3>OCR Inspection System — Jetson</h3>
-          <p>Offline industrial OCR system running on NVIDIA Jetson with ROI locking, OK/NG classification logic, and real-time defect flagging. Deployed in production at Autoliv.</p>
-          <div class="tech-tags">
-            <span class="tech-tag">Jetson Nano</span>
-            <span class="tech-tag">OpenCV</span>
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Edge Inference</span>
-          </div>
-          <a href="#" class="project-link">View Case Study →</a>
-        </div>
-      </div>
+<p class="hero-stack">ROS2 • OpenCV • Jetson • Python • Embedded</p>
 
-      <div class="project-card reveal">
-        <div class="project-img project-img-featured">
-          🦾
-          <div class="project-badge">ROS2</div>
-        </div>
-        <div class="project-body">
-          <h3>Vision-Guided Pick & Place</h3>
-          <p>ROS2-based camera-to-robot manipulation system using real-time object detection for spatial localization and servo-level control for precise pick-and-place execution.</p>
-          <div class="tech-tags">
-            <span class="tech-tag">ROS2</span>
-            <span class="tech-tag">OpenCV</span>
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Servo Control</span>
-          </div>
-          <a href="#" class="project-link">View Case Study →</a>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-img project-img-mecanum">
-          🔧
-          <div class="project-badge">Holonomic</div>
-        </div>
-        <div class="project-body">
-          <h3>Mecanum Holonomic Robot</h3>
-          <p>Four-wheel holonomic drive platform with full kinematic control model, enabling omnidirectional motion and strafing. Designed and assembled from scratch.</p>
-          <div class="tech-tags">
-            <span class="tech-tag">Kinematics</span>
-            <span class="tech-tag">Embedded C</span>
-            <span class="tech-tag">PWM Control</span>
-            <span class="tech-tag">CAD</span>
-          </div>
-          <a href="#" class="project-link">View Case Study →</a>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-img project-img-arm">
-          🖨️
-        </div>
-        <div class="project-body">
-          <h3>3D Printed Robotic Arm</h3>
-          <p>Custom servo-controlled manipulator arm, fully 3D printed and assembled. Designed joint structures and motor mounts in CAD, then implemented manual and programmatic control.</p>
-          <div class="tech-tags">
-            <span class="tech-tag">CAD Design</span>
-            <span class="tech-tag">Servo Control</span>
-            <span class="tech-tag">3D Printing</span>
-            <span class="tech-tag">Python</span>
-          </div>
-          <a href="#" class="project-link">View Case Study →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-wrap">
-    <div class="section-label reveal">Capabilities</div>
-    <h2 class="section-title reveal">Technical Skills</h2>
-    <div class="skills-layout">
-      <div class="skill-group advanced reveal">
-        <div class="skill-level"><span class="skill-level-dot"></span> Advanced</div>
-        <div class="skill-items">
-          <div class="skill-item">
-            <span class="skill-item-name">ROS2</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-item-name">Computer Vision / OpenCV</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-item-name">Python</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-item-name">Edge AI (Jetson)</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="skill-group intermediate reveal">
-        <div class="skill-level"><span class="skill-level-dot"></span> Intermediate</div>
-        <div class="skill-items">
-          <div class="skill-item">
-            <span class="skill-item-name">Embedded Systems</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-item-name">Control Systems</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-item-name">SLAM & Navigation</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-item-name">Deep Learning</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="skill-group familiar reveal">
-        <div class="skill-level"><span class="skill-level-dot"></span> Familiar</div>
-        <div class="skill-items">
-          <div class="skill-item">
-            <span class="skill-item-name">CAD / Mechanical Design</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:50%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-item-name">PLC / Industrial Automation</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:45%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-item-name">C / C++</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:48%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-item-name">Simulation (Gazebo)</span>
-            <div class="skill-bar"><div class="skill-fill" style="width:42%"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PHILOSOPHY -->
-<div class="philosophy">
-  <div class="section-label reveal">Engineering Mindset</div>
-  <br>
-  <p class="philosophy-text reveal">
-    I believe robotics engineering is about building <strong>reliable systems</strong> that integrate perception, intelligence, and mechanical design. My focus is on developing solutions that are not only functional but <strong>scalable and production-ready</strong> — systems that hold up in the real world, not just in the lab.
-  </p>
+<div class="hero-buttons">
+<a href="#projects" class="btn-primary">View Projects →</a>
+<a href="#contact" class="btn-secondary">Contact</a>
 </div>
 
-<!-- EXPERIENCE -->
+<p style="margin-top:1rem;color:var(--muted);font-size:.85rem">
+Currently building industrial vision systems and robotic automation solutions.
+</p>
+
+</div>
+
+<div class="hero-side">
+<div class="hero-stat">
+<div class="hero-stat-num">4+</div>
+<div class="hero-stat-label">Robotic Systems Built</div>
+</div>
+<div class="hero-stat">
+<div class="hero-stat-num">1</div>
+<div class="hero-stat-label">Industrial Deployment</div>
+</div>
+<div class="hero-stat">
+<div class="hero-stat-num">90%</div>
+<div class="hero-stat-label">Vision Accuracy</div>
+</div>
+</div>
+
+</section>
+
+<section id="projects">
+<div class="section-wrap">
+<h2 class="section-title">Selected Projects</h2>
+
+<div class="projects-grid">
+
+<div class="project-card">
+<div class="project-img">
+<video autoplay muted loop>
+<source src="videos/ocr-demo.mp4" type="video/mp4">
+</video>
+</div>
+<div class="project-body">
+<h3>OCR Inspection System</h3>
+<span class="tech-tag">Jetson</span>
+<span class="tech-tag">OpenCV</span>
+<span class="tech-tag">Python</span>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-img">
+<video autoplay muted loop>
+<source src="videos/robotic-arm.mp4" type="video/mp4">
+</video>
+</div>
+<div class="project-body">
+<h3>Vision Guided Pick & Place</h3>
+<span class="tech-tag">OpenCV</span>
+<span class="tech-tag">Python</span>
+<span class="tech-tag">Servo</span>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-img">
+<video autoplay muted loop>
+<source src="videos/mecanum.mp4" type="video/mp4">
+</video>
+</div>
+<div class="project-body">
+<h3>Mecanum Robot</h3>
+<span class="tech-tag">Kinematics</span>
+<span class="tech-tag">Embedded</span>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-img">
+<img src="images/robot-arm.jpg" style="width:100%;height:100%;object-fit:cover">
+</div>
+<div class="project-body">
+<h3>3D Printed Arm</h3>
+<span class="tech-tag">CAD</span>
+<span class="tech-tag">Servo</span>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
 <section id="experience">
-  <div class="section-wrap">
-    <div class="section-label reveal">Background</div>
-    <h2 class="section-title reveal">Experience &<br>Education</h2>
-    <div class="experience-block reveal">
-      <div class="exp-date">2025 – Present</div>
-      <div class="exp-content">
-        <h3>Autoliv India</h3>
-        <p class="exp-role">Robotics & Vision Intern</p>
-        <p>Deployed an offline OCR inspection system on NVIDIA Jetson for industrial quality control. Developed ROI locking, OK/NG decision logic, and integrated with existing production-line automation infrastructure. Worked directly with vision and automation hardware in a real manufacturing environment.</p>
-        <div class="exp-tags">
-          <span class="exp-tag">Vision Inspection</span>
-          <span class="exp-tag">Jetson Deployment</span>
-          <span class="exp-tag">Industrial Automation</span>
-          <span class="exp-tag">OCR</span>
-        </div>
-      </div>
-    </div>
-    <div class="edu-block reveal">
-      <div class="edu-date">2021 – 2025</div>
-      <div class="edu-content">
-        <h3>Chitkara University</h3>
-        <p class="edu-degree">B.E. — Mechatronics Engineering</p>
-      </div>
-    </div>
-  </div>
+<div class="section-wrap">
+<h2 class="section-title">Experience</h2>
+
+<div style="display:flex;gap:2rem;align-items:center;background:var(--card);padding:2rem;border:1px solid var(--border)">
+<div>
+<h3>Autoliv India — Robotics Intern</h3>
+<p style="color:var(--muted)">Worked on industrial OCR inspection systems using Jetson and OpenCV.</p>
+</div>
+<img src="images/autoliv.jpg" style="width:140px;border-radius:4px">
+</div>
+
+</div>
 </section>
 
-<!-- CTA -->
-<section class="cta" id="contact">
-  <h2 class="cta-title reveal">Let's Build Something<br><span class="highlight">Innovative</span> Together</h2>
-  <p class="reveal">Open to robotics engineering roles, research collaborations, and challenging automation problems.</p>
-  <div class="cta-buttons reveal">
-    <a href="mailto:naman@example.com" class="btn-primary">Get in Touch →</a>
-    <a href="https://github.com" target="_blank" class="btn-secondary">GitHub ↗</a>
-    <a href="https://linkedin.com" target="_blank" class="btn-secondary">LinkedIn ↗</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">NS<span>.</span></div>
-  <div class="footer-links">
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <div class="footer-copy">© 2025 Naman Sharma</div>
+© 2025 Naman Sharma
 </footer>
 
-<script>
-  // Custom cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX; mouseY = e.clientY;
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
-  });
-
-  function animateRing() {
-    ringX += (mouseX - ringX) * 0.12;
-    ringY += (mouseY - ringY) * 0.12;
-    ring.style.left = ringX + 'px';
-    ring.style.top = ringY + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'translate(-50%, -50%) scale(2)';
-      ring.style.transform = 'translate(-50%, -50%) scale(1.5)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-      ring.style.transform = 'translate(-50%, -50%) scale(1)';
-    });
-  });
-
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), 100);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-
-  // Stagger reveal children
-  document.querySelectorAll('.spec-grid, .projects-grid, .skills-layout').forEach(grid => {
-    const children = grid.querySelectorAll('.reveal');
-    children.forEach((child, i) => {
-      child.style.transitionDelay = (i * 0.1) + 's';
-    });
-  });
-</script>
 </body>
 </html>
